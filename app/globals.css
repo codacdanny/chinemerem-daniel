@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------- */
+/*  Design tokens — see brand.md (source of truth)                  */
+/* ---------------------------------------------------------------- */
+@theme {
+  --color-bg: #080809;
+  --color-bg-raise: #101012;
+  --color-bg-elev: #17171a;
+  --color-line: rgba(240, 240, 235, 0.1);
+  --color-line-strong: rgba(240, 240, 235, 0.18);
+  --color-fg: #f4f4f0;
+  --color-muted: #8a8d94;
+  --color-faint: #565963;
+  --color-acid: #d7fb4a;
+  --color-acid-deep: #a8c71e;
+  --color-cyan: #66e7ff;
+  --color-rose: #ff6a5e;
+
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* ---------------------------------------------------------------- */
+/*  Base                                                            */
+/* ---------------------------------------------------------------- */
+:root {
+  color-scheme: dark;
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Lenis controls scroll; keep native smooth off */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-acid);
+  color: #08080a;
+}
+
+/* Hide default cursor on devices with a real pointer (custom cursor takes over) */
+@media (hover: hover) and (pointer: fine) {
+  body:not(.no-custom-cursor) * {
+    cursor: none;
+  }
+}
+
+/* Focus ring — accessible, on-brand */
+:where(a, button, [role="button"], input, textarea):focus-visible {
+  outline: 2px solid var(--color-acid);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------------------------------------------------------------- */
+/*  Utilities                                                       */
+/* ---------------------------------------------------------------- */
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-serif-accent {
+    font-family: var(--font-serif);
+    font-style: italic;
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* micro label */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .acid-gradient {
+    background: linear-gradient(100deg, var(--color-acid), var(--color-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .edge-fade-x {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+  }
+
+  /* faint hairline grid background */
+  .grid-lines {
+    background-image: linear-gradient(var(--color-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+}
+
+/* Film grain overlay */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Reveal primitives driven by GSAP / IntersectionObserver */
+.reveal-line {
+  display: block;
+  overflow: hidden;
+}
+.reveal-line > * {
+  display: block;
+  transform: translateY(110%);
+  will-change: transform;
+}
+
+/* Reduced motion: reveal everything, kill transforms */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-line > * {
+    transform: none !important;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
