@@ -1,9 +1,5 @@
 # Chinemerem Daniel — Portfolio
 
-An Awwwards-grade personal portfolio. Dark, editorial, alive: real-time WebGL 3D,
-inertia smooth-scroll, GSAP scroll choreography, a custom magnetic cursor, and
-kinetic typography. Positioned around **product engineering — taking ideas from 0 → 1**.
-
 ## Stack
 
 - **Next.js 15** (App Router) + **TypeScript**
@@ -14,8 +10,6 @@ kinetic typography. Positioned around **product engineering — taking ideas fro
 - **Framer Motion**, custom magnetic cursor, film-grain overlay
 - **Tailwind CSS v4** — design tokens in `app/globals.css`, source of truth in `brand.md`
 
-Every animation is gated behind `prefers-reduced-motion`, and the WebGL canvases
-have a calm static fallback.
 
 ## Run
 

@@ -71,7 +71,7 @@ export const experience: Role[] = [
     location: "Onsite — Owerri, Nigeria",
     period: "Aug 2024 — Feb 2025",
     points: [
-      "Rebuilt pamtechgroup.com, cutting load time by 72% via image optimization and selective animation.",
+      "Redesigned pamtechgroup.com, cutting load time by 72% via image optimization and selective animation.",
       "Shipped a booking platform, a car-data management app, an LMS (Next.js + Supabase) and an e-commerce store across the group.",
     ],
     tags: ["Next.js", "Supabase", "Performance"],
