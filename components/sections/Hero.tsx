@@ -101,27 +101,28 @@ export default function Hero() {
             <span className="text-fg">HR-tech</span>.
           </p>
 
-          <div className="hero-cta-wrap flex flex-wrap items-center gap-3 md:col-span-5 md:justify-end">
-            <Magnetic strength={0.4}>
-              <button
-                onClick={() => scrollTo("#work")}
-                data-cursor="View"
-                className="hero-cta group inline-flex h-[52px] items-center justify-center gap-2 rounded-full bg-acid px-6 text-sm font-semibold text-bg transition-transform"
-              >
-                See selected work
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden className="transition-transform group-hover:translate-y-0.5">
-                  <path d="M8 2v12M8 14l4-4M8 14l-4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </Magnetic>
-            <Magnetic strength={0.4}>
-              <button
-                onClick={() => scrollTo("#contact")}
-                data-cursor=""
-                className="hero-cta inline-flex h-[52px] items-center justify-center gap-2 rounded-full border border-line-strong px-6 text-sm font-medium text-fg transition-colors hover:border-fg"
-              >
-                Get in touch
-              </button>
+          <div className="hero-cta-wrap flex md:col-span-5 md:justify-end">
+            {/* one magnet around the pair so they always stay aligned to each other */}
+            <Magnetic strength={0.25}>
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  onClick={() => scrollTo("#work")}
+                  data-cursor="View"
+                  className="hero-cta group inline-flex h-[52px] items-center justify-center gap-2 rounded-full bg-acid px-6 text-sm font-semibold text-bg transition-transform hover:scale-[1.03]"
+                >
+                  See selected work
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden className="transition-transform group-hover:translate-y-0.5">
+                    <path d="M8 2v12M8 14l4-4M8 14l-4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => scrollTo("#contact")}
+                  data-cursor=""
+                  className="hero-cta inline-flex h-[52px] items-center justify-center gap-2 rounded-full border border-line-strong px-6 text-sm font-medium text-fg transition-[transform,border-color] hover:scale-[1.03] hover:border-fg"
+                >
+                  Get in touch
+                </button>
+              </div>
             </Magnetic>
           </div>
         </div>
